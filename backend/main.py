@@ -1,14 +1,12 @@
 # main.py
-from fastapi import FastAPI, Request, HTTPException, Depends, testclient
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, Request, HTTPException
 from Model import connection, healthXUser
-from Users import logIn
+from Router.Users import logIn, signUp
 import uvicorn
 import json
 
 app = FastAPI()
 router = FastAPI().router
-client = testclient.TestClient(app)
 
 # Create Connection
 database = connection.createConnection()
@@ -19,33 +17,32 @@ healthXUser.readAllUser(database, cursor)
 
 
 @app.post("/signUp")
-async def signUp(request: Request):
+async def signup(request: Request):
     try:
         requestedData = await request.json()
-
-        if healthXUser.readSingleUser(cursor, requestedData["userName"]) is not None:
-            return JSONResponse(
-                status_code=200,
-                content={
-                    "detail": "User Name Already Exists"
-                }
-            )
-
-        healthXUser.createUser(database, cursor, True, requestedData)
-
-        return JSONResponse(
-            status_code=200,
-            content={
-                "detail": "User Created SuccessFully"
-            }
-        )
+        return signUp.signUp(requestedData)
     except json.JSONDecodeError:
         raise HTTPException(status_code=400, detail="Invalid JSON data")
 
 
-# @app.post("/logIn")
-# Depends MiddleWare takes the checker callBack Function
-# logIn.logIn()
+@app.post("/logIn")
+async def login(request: Request):
+    try:
+        requestedData = await request.json()
+        return logIn.logIn(requestedData)
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON data")
+    
+
+@router.get("{userName}/read")
+async def usersRead(userName: str, request: Request):
+    try:
+        requestedData = await request.json()
+        requestedHeader = await request.headers()
+        
+        return logIn.logIn(requestedData)
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON data")
 
 
 if __name__ == "__main__":

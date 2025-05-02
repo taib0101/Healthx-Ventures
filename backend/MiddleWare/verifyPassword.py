@@ -2,11 +2,10 @@ from Model import healthXUser
 from fastapi import Request, HTTPException
 
 
-def verify(cursor):
-    async def checker(request: Request):
-        requestedData = await request.json()
+def verify(cursor, requestedData):
+    
+    if healthXUser.readSingleUser_Password(cursor, requestedData) is None:
+        raise HTTPException(
+            status_code=401, detail="Unauthorized , User or Password Invalid")
 
-        if healthXUser.readSingleUser_Password(cursor, requestedData) is None:
-            raise HTTPException(status_code=401, detail="Unauthorized , User or Password Invalid")
-
-    return checker
+    return None

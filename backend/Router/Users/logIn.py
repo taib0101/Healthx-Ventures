@@ -1,17 +1,13 @@
-from fastapi import FastAPI, Request, HTTPException, Depends
+from fastapi import HTTPException
 from fastapi.responses import JSONResponse
+import main
+# from main import database, cursor
 from Controller import generateJWT
 from MiddleWare import verifyPassword
-from main import database, cursor, client
 
-# Depends MiddleWare takes the checker callBack Function
-async def logIn(request: Request):
+def logIn(requestedData):
 
-    scope = client.post("/logIn")
-
-    verify = await verifyPassword.verify(cursor)
-
-    requestedData = await request.json()
+    verifyPassword.verify(main.cursor, requestedData)
 
     accessToken = generateJWT.generateToken(requestedData["userName"])
 
