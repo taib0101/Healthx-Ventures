@@ -1,0 +1,33 @@
+# Install
+1. python3 --version
+2. sudo apt update
+3. sudo apt install python3 python3-pip
+
+## Create a Virtual Environment (Recommended)
+4. python3 -m venv venv
+5. source venv/bin/activate
+
+## Install FastAPI and Uvicorn
+6. pip install fastapi uvicorn
+
+## Create a Simple FastAPI App
+7. nano main.py
+
+## Deactivate Virtual Environment
+8. deactivate venv/bin/activate
+
+# Run App
+## Run Virtual Environment
+1. source venv/bin/activate
+
+## Run the FastAPI App
+2. uvicorn main:app --reload
+or
+python3 main.py 
+# when below code is done 
+# if __name__ == "__main__":
+#    import uvicorn
+#    uvicorn.run("main:app")
+
+## Deactivate Virtual Environment
+3. deactivate venv/bin/activate
