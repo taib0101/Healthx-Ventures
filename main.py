@@ -3,8 +3,10 @@ from fastapi import FastAPI, Request, HTTPException
 from Model import connection, healthXUser, healthXUserCRUD
 from Router.Users import logIn, signUp
 from Router.Users_CRUD import read, create, update, delete
+from dotenv import load_dotenv
 import uvicorn
 import json
+import os
 
 app = FastAPI()
 
@@ -90,8 +92,10 @@ async def usersDelete(request: Request):
         raise HTTPException(
             status_code=500, detail="Unexpected error while updating user task")
 
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
+
 if __name__ == "__main__":
-    uvicorn.run("main:app", reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.getenv("PORT")), reload=True)
     cursor.close()
     database.close()
     print("Database connection closed")
