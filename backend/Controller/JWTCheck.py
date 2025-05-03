@@ -1,7 +1,7 @@
 import jwt
 from jwt import ExpiredSignatureError, InvalidTokenError
 
-SECRET_KEY = "your_super_secret_key"
+SECRET_KEY = "secret_key"
 ALGORITHM = "HS256"
 
 def check_jwt_expiry(token: str):

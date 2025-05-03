@@ -1,11 +1,9 @@
 from Model import healthXUser
-from fastapi import Request, HTTPException
-
 
 def verify(cursor, requestedData):
-    
-    if healthXUser.readSingleUser_Password(cursor, requestedData) is None:
-        raise HTTPException(
-            status_code=401, detail="Unauthorized , User or Password Invalid")
+    readUserPassword = healthXUser.readSingleUser_Password(cursor, requestedData)
 
-    return None
+    if readUserPassword is None:
+        return False
+    
+    return True

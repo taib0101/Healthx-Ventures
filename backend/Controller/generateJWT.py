@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 import jwt
 
 def generateToken(userName):
-    expireTime = datetime.now(timezone.utc) + timedelta(minutes=3)
+    expireTime = datetime.now(timezone.utc) + timedelta(minutes=30)
 
     SECRET_KEY = "secret_key"
     ALGORITHM = "HS256"
