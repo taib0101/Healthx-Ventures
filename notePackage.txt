@@ -11,6 +11,7 @@
 
 ## to assign all dependencies package
 7. pip freeze > requirements.txt
+8. pip install -r requirements.txt
 
 # Deactivate Virtual Environment
 1. deactivate venv/bin/activate
