@@ -2,7 +2,7 @@
 from fastapi import FastAPI, Request, HTTPException
 from Model import connection, healthXUser, healthXUserCRUD
 from Router.Users import logIn, signUp
-from Router.Users_CRUD import read, create, update
+from Router.Users_CRUD import read, create, update, delete
 import uvicorn
 import json
 
@@ -66,13 +66,21 @@ async def usersRead(userName: str, request: Request):
 @app.put("/{userName}/update")
 async def usersUpdate(userName: str, request: Request):
     try:
+        requestedData = await request.json()
         requestedHeader = request.headers
-        return read.updateData(requestedHeader)
+        return update.updateData(requestedData, requestedHeader)
     except Exception:
         raise HTTPException(
             status_code=500, detail="Unexpected error while updating user task")
     
-
+@app.delete("/{userName}/delete")
+async def usersDelete(userName: str, request: Request):
+    try:
+        requestedHeader = request.headers
+        return delete.deleteData(requestedHeader)
+    except Exception:
+        raise HTTPException(
+            status_code=500, detail="Unexpected error while updating user task")
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)

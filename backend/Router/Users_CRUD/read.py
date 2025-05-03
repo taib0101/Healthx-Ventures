@@ -23,7 +23,6 @@ def readData(requestedHeader):
     for rows in data:
         results.append(dict(zip(columns, rows)))
 
-    print(results)
     return JSONResponse(
         status_code=200,
         content={
