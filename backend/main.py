@@ -29,6 +29,12 @@ async def signup(request: Request):
             status_code=500, detail="Unexpected error while signup")
 
 
+"""
+@app.post("/{userName}/logIn")
+async def login(userName: str, request: Request):
+"""
+
+
 @app.post("/logIn")
 async def login(request: Request):
     try:
@@ -41,8 +47,8 @@ async def login(request: Request):
             status_code=500, detail="Unexpected error while login")
 
 
-@app.post("/{userName}/create")
-async def userCreate(userName: str, request: Request):
+@app.post("/create")
+async def userCreate(request: Request):
     try:
         requestedHeader = request.headers
         requestedData = await request.json()
@@ -54,17 +60,18 @@ async def userCreate(userName: str, request: Request):
             status_code=500, detail="Unexpected error while creating user task")
 
 
-@app.get("/{userName}/read")
-async def usersRead(userName: str, request: Request):
+@app.get("/read")
+async def usersRead(request: Request):
     try:
         requestedHeader = request.headers
         return read.readData(requestedHeader)
     except Exception:
         raise HTTPException(
             status_code=500, detail="Unexpected error while reading user task")
-    
-@app.put("/{userName}/update")
-async def usersUpdate(userName: str, request: Request):
+
+
+@app.put("/update")
+async def usersUpdate(request: Request):
     try:
         requestedData = await request.json()
         requestedHeader = request.headers
@@ -72,9 +79,10 @@ async def usersUpdate(userName: str, request: Request):
     except Exception:
         raise HTTPException(
             status_code=500, detail="Unexpected error while updating user task")
-    
-@app.delete("/{userName}/delete")
-async def usersDelete(userName: str, request: Request):
+
+
+@app.delete("/delete")
+async def usersDelete(request: Request):
     try:
         requestedHeader = request.headers
         return delete.deleteData(requestedHeader)
