@@ -18,13 +18,14 @@ I developed Backend with **FastAPI** and **PostgreSQL**, this API features user 
 │   └── healthXUserCRUD.py
 ├── Router
 │   └── Users
-│       ├── login.py
-│       └── signUp.py
-├── Users_CRUD
-│   ├── create.py
-│   ├── delete.py
-│   ├── read.py
-│   └── update.py
+│   │   ├── login.py
+│   │   └── signUp.py
+│   │
+│   ├── Users_CRUD
+│       ├── create.py
+│       ├── delete.py
+│       ├── read.py
+│       └── update.py
 ├── .env
 └── main.py
 ```
