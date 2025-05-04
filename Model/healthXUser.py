@@ -20,7 +20,7 @@ def createTable(database, cursor):
     try:
         cursor.execute("""
             CREATE TABLE healthxuser (
-                    username VARCHAR(20) PRIMARY KEY UNIQUE NOT NULL,
+                    username VARCHAR(100) PRIMARY KEY UNIQUE NOT NULL,
                     password VARCHAR(400) NOT NULL
                 )
             """)

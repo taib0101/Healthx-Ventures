@@ -78,6 +78,8 @@ async def usersUpdate(request: Request):
         requestedData = await request.json()
         requestedHeader = request.headers
         return update.updateData(requestedData, requestedHeader)
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON data")
     except Exception:
         raise HTTPException(
             status_code=500, detail="Unexpected error while updating user task")

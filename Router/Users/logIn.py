@@ -9,8 +9,6 @@ def logIn(requestedData):
     try:
         verify = verifyPassword.verify(main.cursor, requestedData)
 
-        print("verify: ", verify)
-
         if verify is False:
             return JSONResponse(
                 status_code=401,

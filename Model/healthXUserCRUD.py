@@ -24,13 +24,13 @@ def createTable(database, cursor):
         cursor.execute("""
             CREATE TABLE healthxuser_crud (
                     id VARCHAR(50) PRIMARY KEY UNIQUE NOT NULL,
-                    username VARCHAR(10) NOT NULL,
-                    patient_name VARCHAR(30),
+                    username VARCHAR(100) NOT NULL,
+                    patient_name VARCHAR(50),
                     gender VARCHAR(7),
-                    disease VARCHAR(20),
+                    disease VARCHAR(100),
                     phone VARCHAR(16),
-                    address VARCHAR(20),
-                    date VARCHAR(30) NOT NULL,
+                    address VARCHAR(100),
+                    date VARCHAR(50) NOT NULL,
                        
                     FOREIGN KEY (userName) REFERENCES healthxuser(userName)
                 )
@@ -129,6 +129,8 @@ def deleteSingleUserTask(database, cursor, taskId):
         cursor.execute("""
             DELETE FROM healthxuser_crud WHERE id = %s;
         """, (taskId, ))
+
+        database.commit()
 
     except psycopg2.Error as exce:
         print(f"An error occured during delete users Task: {exce}")
