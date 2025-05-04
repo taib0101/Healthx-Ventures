@@ -50,7 +50,7 @@ $ python3 main.py development
 
 # How It Works
 ## Database Connection 
-<!-- <img src="gif/DataBase_Connection.gif" alt="Database_Connection" width="600" />
+<img src="gif/DataBase_Connection.gif" alt="Database_Connection" width="600" />
 
 ## Create User
 <img src="gif/CreateUser.gif" alt="Database_Connection" width="600" />
@@ -66,4 +66,4 @@ $ python3 main.py development
 <img src="gif/Update.gif" alt="Database_Connection" width="600" />
 
 ### Delete
-<img src="gif/Delete.gif" alt="Database_Connection" width="600" /> -->
+<img src="gif/Delete.gif" alt="Database_Connection" width="600" />
