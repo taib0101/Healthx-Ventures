@@ -2,7 +2,7 @@
 
 ### About
 
-I developed Backend with **FastAPI** and **PostgreSQL**, this API features user and task management with **JWT authentication** and **bcrypt password hashing**. It supports user creation, task **CRUD** operations linked to users, and secure data handling via **psycopg2**.
+I developed Backend with **FastAPI** and **PostgreSQL**, this API features user and task management with **JWT authentication** and **bcrypt password hashing**. It supports user creation, authentication, user's specific task **CRUD** operations linked to users, and secure data handling via **psycopg2**.
 
 # File Structure
 
